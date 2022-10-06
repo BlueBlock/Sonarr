@@ -105,7 +105,10 @@ namespace NzbDrone.Core.MediaFiles.EpisodeImport
                         episodeFile.SceneName = localEpisode.SceneName;
                         episodeFile.OriginalFilePath = GetOriginalFilePath(downloadClientItem, localEpisode);
 
+                        _logger.Info("START episode import :: " + localEpisode);
                         var moveResult = _episodeFileUpgrader.UpgradeEpisodeFile(episodeFile, localEpisode, copyOnly);
+                        _logger.Info("END episode import :: " + localEpisode);
+
                         oldFiles = moveResult.OldFiles;
                     }
                     else
